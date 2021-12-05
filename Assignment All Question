@@ -1,0 +1,533 @@
+Question no 1
+
+public class find {
+    public static void main(String args[])
+    {
+        int[] arr = { 1, 5, 7, -1, 5 };
+        int sum = 6;
+        getPairsCount(arr, sum);
+    }
+ 
+    // Prints number of pairs in arr[0..n-1] with sum equal
+    // to 'sum'
+    public static void getPairsCount(int[] arr, int sum)
+    {
+ 
+        int count = 0; // Initialize result
+ 
+        // Consider all possible pairs and check their sums
+        for (int i = 0; i < arr.length; i++)
+            for (int j = i + 1; j < arr.length; j++)
+                if ((arr[i] + arr[j]) == sum)
+                    count++;
+ 
+        System.out.printf("Count of pairs is %d", count);
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Question no 2
+
+public class sahil {
+     
+    static void rvereseArray(int arr[],
+                    int start, int end)
+    {
+        int temp;
+          
+        while (start < end)
+        {
+            temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }    
+      
+    static void printArray(int arr[],
+                            int size)
+    {
+        for (int i = 0; i < size; i++)
+             System.out.print(arr[i] + " ");
+          
+         System.out.println();
+    }
+
+    public static void main(String args[]) {
+         
+        int arr[] = {1, 2, 3, 4, 5, 6};
+        printArray(arr, 6);
+        rvereseArray(arr, 0, 5);
+        System.out.print("Reversed array is \n");
+        printArray(arr, 6);
+        
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Question no 3
+
+class StringRotation
+{
+    static boolean areRotations(String str1, String str2)
+    {
+        return (str1.length() == str2.length()) &&
+               ((str1 + str1).indexOf(str2) != -1);
+    }
+     
+    // Driver method
+    public static void main (String[] args)
+    {
+        String str1 = "AACD";
+        String str2 = "ACDA";
+ 
+        if (areRotations(str1, str2))
+            System.out.println("Strings are rotations of each other");
+        else
+            System.out.printf("Strings are not rotations of each other");
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Question no 4
+
+class Sahil1 {
+    static final int NO_OF_CHARS = 256;
+    static char count[] = new char[NO_OF_CHARS];
+ 
+    static void getCharCountArray(String str)
+    {
+        for (int i = 0; i < str.length(); i++)
+            count[str.charAt(i)]++;
+    }
+ 
+    /* The method returns index of first non-repeating
+       character in a string. If all characters are repeating
+       then returns -1 */
+    static int firstNonRepeating(String str)
+    {
+        getCharCountArray(str);
+        int index = -1, i;
+ 
+        for (i = 0; i < str.length(); i++) {
+            if (count[str.charAt(i)] == 1) {
+                index = i;
+                break;
+            }
+        }
+ 
+        return index;
+    }
+ 
+    // Driver method
+    public static void main(String[] args)
+    {
+        String str = "geeksforgeeks";
+        int index = firstNonRepeating(str);
+ 
+        System.out.println(
+            index == -1
+                ? "Either all characters are repeating or string "
+                      + "is empty"
+                : "First non-repeating character is "
+                      + str.charAt(index));
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Question no 5
+
+import java.util.*;
+import java.io.*;
+import java.math.*;
+class GFG
+{
+static void towerOfHanoi(int n, char from_rod,
+                    char to_rod, char aux_rod)
+{
+    if (n == 1)
+    {
+        System.out.println("Move disk 1 from rod "+
+                           from_rod+" to rod "+to_rod);
+        return;
+    }
+    towerOfHanoi(n - 1, from_rod, aux_rod, to_rod);
+    System.out.println("Move disk "+ n + " from rod " +
+                       from_rod +" to rod " + to_rod );
+    towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
+}
+ 
+// Driver code
+public static void  main(String args[])
+{
+    int n = 4; // Number of disks
+    towerOfHanoi(n, 'A', 'C', 'B'); // A, B and C are names of rods
+}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Question no 6
+
+import java.util.*;
+ 
+class Sahil2 {
+ 
+    static boolean isOperator(char x)
+    {
+        switch (x) {
+        case '+':
+        case '-':
+        case '/':
+        case '*':
+            return true;
+        }
+        return false;
+    }
+ 
+    // Convert prefix to Postfix expression
+    static String preToPost(String pre_exp)
+    {
+ 
+        Stack<String> s = new Stack<String>();
+ 
+        // length of expression
+        int length = pre_exp.length();
+ 
+        // reading from right to left
+        for (int i = length - 1; i >= 0; i--)
+        {
+            // check if symbol is operator
+            if (isOperator(pre_exp.charAt(i)))
+            {
+                // pop two operands from stack
+                String op1 = s.peek();
+                s.pop();
+                String op2 = s.peek();
+                s.pop();
+ 
+                // concat the operands and operator
+                String temp = op1 + op2 + pre_exp.charAt(i);
+ 
+                // Push String temp back to stack
+                s.push(temp);
+            }
+ 
+            else {
+                // push the operand to the stack
+                s.push(pre_exp.charAt(i) + "");
+            }
+        }
+ 
+    }
+ 
+    public static void main(String args[])
+    {
+        String pre_exp = "*-A/BC-/AKL";
+        System.out.println("Postfix : "
+                           + preToPost(pre_exp));
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Question no 7
+
+import java.util.Stack;
+ 
+class Sahil3{
+ 
+// Function to check if character
+// is operator or not    
+static    boolean isOperator(char x)
+{
+    switch(x)
+    {
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+            return true;
+    }
+    return false;
+}
+ 
+// Convert prefix to Infix expression
+public static String convert(String str)
+{
+    Stack<String> stack = new Stack<>();
+     
+    // Length of expression
+    int l = str.length();
+     
+    // Reading from right to left
+    for(int i = l - 1; i >= 0; i--)
+    {
+        char c = str.charAt(i);
+        if (isOperator(c))
+        {
+            String op1 = stack.pop();
+            String op2 = stack.pop();
+             
+            // Concat the operands and operator
+            String temp = "(" + op1 + c + op2 + ")";
+            stack.push(temp);
+        }
+        else
+        {
+             
+            // To make character to string
+            stack.push(c + "");
+        }
+    }
+    return stack.pop();
+}
+ 
+// Driver code
+public static void main(String[] args)
+{
+    String exp = "*-A/BC-/AKL";
+    System.out.println("Infix : " + convert(exp));
+}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Question no 8
+
+import java.util.*;
+ 
+public class BalancedBrackets {
+ 
+    static boolean areBracketsBalanced(String expr)
+    {
+
+        Deque<Character> stack
+            = new ArrayDeque<Character>();
+ 
+
+        for (int i = 0; i < expr.length(); i++)
+        {
+            char x = expr.charAt(i);
+ 
+            if (x == '(' || x == '[' || x == '{')
+            {
+                // Push the element in the stack
+                stack.push(x);
+                continue;
+            }
+
+            if (stack.isEmpty())
+                return false;
+            char check;
+            switch (x) {
+            case ')':
+                check = stack.pop();
+                if (check == '{' || check == '[')
+                    return false;
+                break;
+ 
+            case '}':
+                check = stack.pop();
+                if (check == '(' || check == '[')
+                    return false;
+                break;
+ 
+            case ']':
+                check = stack.pop();
+                if (check == '(' || check == '{')
+                    return false;
+                break;
+            }
+        }
+ 
+        // Check Empty Stack
+        return (stack.isEmpty());
+    }
+ 
+    // Driver code
+    public static void main(String[] args)
+    {
+        String expr = "([{}])";
+ 
+        // Function call
+        if (areBracketsBalanced(expr))
+            System.out.println("Balanced ");
+        else
+            System.out.println("Not Balanced ");
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Question no 9
+
+import java.util.Stack;
+ 
+class Test {
+     
+    // using Stack class for
+    // stack implementation
+    static Stack<Character> st = new Stack<>();
+
+    static void insert_at_bottom(char x)
+    {
+ 
+        if(st.isEmpty())
+            st.push(x);
+ 
+        else
+        {
+            char a = st.peek();
+            st.pop();
+            insert_at_bottom(x);
+ 
+            st.push(a);
+        }
+    }
+     
+    static void reverse()
+    {
+        if(st.size() > 0)
+        {
+            char x = st.peek();
+            st.pop();
+            reverse();
+
+            insert_at_bottom(x);
+        }
+    }
+     
+    // Driver Code
+    public static void main(String[] args)
+    {
+         
+        // push elements into
+        // the stack
+        st.push('1');
+        st.push('2');
+        st.push('3');
+        st.push('4');
+         
+        System.out.println("Original Stack");
+         
+        System.out.println(st);
+         
+        // function to reverse
+        // the stack
+        reverse();
+         
+        System.out.println("Reversed Stack");
+         
+        System.out.println(st);
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Question no 10
+
+import java.util.*;
+
+class MyStack
+{
+    Stack<Integer> s;
+    Integer minEle;
+ 
+    // Constructor
+    MyStack() { s = new Stack<Integer>(); }
+ 
+    // Prints minimum element of MyStack
+    void getMin()
+    {
+        // Get the minimum number in the entire stack
+        if (s.isEmpty())
+            System.out.println("Stack is empty");
+
+        else
+            System.out.println("Minimum Element in the " +
+                               " stack is: " + minEle);
+    }
+ 
+    // prints top element of MyStack
+    void peek()
+    {
+        if (s.isEmpty())
+        {
+            System.out.println("Stack is empty ");
+            return;
+        }
+ 
+        Integer t = s.peek(); // Top element.
+ 
+        System.out.print("Top Most Element is: ");
+ 
+
+        if (t < minEle)
+            System.out.println(minEle);
+        else
+            System.out.println(t);
+    }
+ 
+    // Removes the top element from MyStack
+    void pop()
+    {
+        if (s.isEmpty())
+        {
+            System.out.println("Stack is empty");
+            return;
+        }
+ 
+        System.out.print("Top Most Element Removed: ");
+        Integer t = s.pop();
+
+        if (t < minEle)
+        {
+            System.out.println(minEle);
+            minEle = 2*minEle - t;
+        }
+ 
+        else
+            System.out.println(t);
+    }
+ 
+    // Insert new number into MyStack
+    void push(Integer x)
+    {
+        if (s.isEmpty())
+        {
+            minEle = x;
+            s.push(x);
+            System.out.println("Number Inserted: " + x);
+            return;
+        }
+ 
+        // If new number is less than original minEle
+        if (x < minEle)
+        {
+            s.push(2*x - minEle);
+            minEle = x;
+        }
+ 
+        else
+            s.push(x);
+ 
+        System.out.println("Number Inserted: " + x);
+    }
+};
+ 
+// Driver Code
+public class Main
+{
+    public static void main(String[] args)
+    {
+        MyStack s = new MyStack();
+        s.push(3);
+        s.push(5);
+        s.getMin();
+        s.push(2);
+        s.push(1);
+        s.getMin();
+        s.pop();
+        s.getMin();
+        s.pop();
+        s.peek();
+    }
+}
